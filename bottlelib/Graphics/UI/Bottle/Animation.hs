@@ -6,7 +6,7 @@ module Graphics.UI.Bottle.Animation
   , Frame(..), frameImagesMap, unitImages
   , draw, nextFrame, mapIdentities
   , unitSquare, unitHStripedSquare, emptyRectangle
-  , backgroundColor
+  , coloredSquare, backgroundColor
   , translate, scale, layers
   , unitIntoRect
   , simpleFrame, sizedFrame
@@ -24,7 +24,7 @@ import           Data.List.Utils (groupOn, sortOn)
 import           Data.Map (Map, (!))
 import qualified Data.Map as Map
 import           Data.Maybe (isJust)
-import           Data.Monoid (Monoid(..))
+import           Data.Monoid (Monoid(..), (<>))
 import           Data.Vector.Vector2 (Vector2(..))
 import qualified Data.Vector.Vector2 as Vector2
 import           Graphics.DrawingCombinators (R, (%%))
@@ -244,13 +244,16 @@ unitHStripedSquare n animId =
     hunits = fromIntegral n * 2 - 1 -- light/dark unit count
     square i = unitSquare $ animId ++ [SBS.pack (show (i :: Int))]
 
-backgroundColor :: AnimId -> Layer -> Draw.Color -> Vector2 R -> Frame -> Frame
-backgroundColor animId layer color size frame =
+coloredSquare :: AnimId -> Layer -> Draw.Color -> Vector2 R -> Frame
+coloredSquare animId layer color size =
   unitSquare animId
   & images . iUnitImage %~ Draw.tint color
   & scale size
   & layers +~ layer
-  & mappend frame
+
+backgroundColor :: AnimId -> Layer -> Draw.Color -> Vector2 R -> Frame -> Frame
+backgroundColor animId layer color size frame =
+  frame <> coloredSquare animId layer color size
 
 translate :: Vector2 R -> Frame -> Frame
 translate pos = images . iRect . Rect.topLeft +~ pos

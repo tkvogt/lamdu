@@ -5,7 +5,8 @@ module Graphics.UI.Bottle.View
   , size, animFrame
   , width, height
   , Size
-  , augmentAnimId, backgroundColor
+  , augmentAnimId
+  , backgroundColor, backgroundColorShadowed
   , scale
   ) where
 
@@ -50,6 +51,20 @@ backgroundColor animId layer color view =
     & animFrame %~ Anim.backgroundColor bgAnimId layer color (view ^. size)
     where
         bgAnimId = animId ++ ["bg"]
+
+backgroundColorShadowed :: AnimId -> Layer -> Draw.Color -> View -> View
+backgroundColorShadowed animId layer color view =
+    view
+    & animFrame <>~
+      Anim.coloredSquare (bgAnimId "front") layer color (view ^. size - 3)
+    & animFrame <>~
+      ( Anim.coloredSquare (bgAnimId "back") (layer+1) (halfColor color)
+        (view ^. size - 3)
+        & Anim.translate 3
+      )
+    where
+        halfColor (Draw.Color r g b a) = Draw.Color (r/2) (g/2) (b/2) a
+        bgAnimId x = animId ++ ["bg", x]
 
 scale :: Vector2 Draw.R -> View -> View
 scale ratio (View sz frm) =

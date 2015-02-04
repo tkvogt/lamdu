@@ -307,12 +307,14 @@ grammarLabel text animId =
         (WE.setTextSizeColor (Config.baseTextSize config) (Config.grammarColor config))
 
 addValBG :: MonadA m => Widget.Id -> Widget f -> ExprGuiM m (Widget f)
-addValBG myId gui =
+addValBG myId widget =
   do
     config <- ExprGuiM.readConfig
     let layer = Config.layerValFrameBG $ Config.layers config
     let color = Config.valFrameBGColor config
-    Widget.backgroundColor layer animId color gui & return
+    widget
+      & Widget.view %~ View.backgroundColorShadowed animId layer color
+      & return
   where
     animId = Widget.toAnimId myId ++ ["val"]
 
