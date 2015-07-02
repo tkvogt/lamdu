@@ -11,11 +11,14 @@ module Graphics.DrawingCombinators.Utils
     , clearRenderSized
     ) where
 
+#if __GLASGOW_HASKELL__ < 710
+import           Data.Monoid (Monoid(..))
+#endif
+
 import           Control.Lens.Operators
 import           Control.Monad (void)
 import           Data.Aeson (ToJSON(..), FromJSON(..))
 import           Data.List (genericLength)
-import           Data.Monoid (Monoid(..))
 import           Data.Vector.Vector2 (Vector2(..))
 import           Foreign.C.Types.Instances ()
 import           GHC.Generics (Generic)

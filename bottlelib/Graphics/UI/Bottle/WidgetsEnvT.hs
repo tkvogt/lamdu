@@ -17,7 +17,7 @@ module Graphics.UI.Bottle.WidgetsEnvT
     , setTextSizeColor, setTextColor
     ) where
 
-import           Control.Applicative (Applicative)
+-- -- import           Control.Applicative (Applicative)
 import qualified Control.Lens as Lens
 import           Control.Lens.Operators
 import           Control.Monad.Trans.Class (MonadTrans(..))

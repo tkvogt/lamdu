@@ -1,13 +1,15 @@
-{-# LANGUAGE OverloadedStrings, RecordWildCards #-}
+{-# LANGUAGE OverloadedStrings, RecordWildCards, CPP #-}
 module Graphics.UI.Bottle.Widgets.FocusDelegator
     ( FocusEntryTarget(..)
     , Config(..), Style(..), Env(..)
     , make
     ) where
 
+#if __GLASGOW_HASKELL__ < 710
 import           Control.Applicative (Applicative(..))
-import           Control.Lens.Operators
 import           Data.Monoid (mempty)
+#endif
+import           Control.Lens.Operators
 import qualified Graphics.DrawingCombinators as Draw
 import qualified Graphics.UI.Bottle.Animation as Anim
 import           Graphics.UI.Bottle.Direction (Direction)

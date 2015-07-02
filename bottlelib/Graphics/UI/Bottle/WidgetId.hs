@@ -1,14 +1,16 @@
-{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving, CPP #-}
 module Graphics.UI.Bottle.WidgetId
     ( Id(..)
     , joinId, subId
     ) where
 
+#if __GLASGOW_HASKELL__ < 710
+import Data.Monoid (Monoid(..))
+#endif
 import Control.Lens.Operators
 import Data.Binary (Binary)
 import Data.List (intercalate)
 import Data.List.Lens (prefixed)
-import Data.Monoid (Monoid(..))
 import Graphics.UI.Bottle.Animation.Id (AnimId)
 import Numeric.Utils (encodeHex)
 

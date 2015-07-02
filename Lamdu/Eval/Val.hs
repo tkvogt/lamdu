@@ -9,14 +9,14 @@ module Lamdu.Eval.Val
     , bitraverse, payloads, children
     ) where
 
-import           Control.Applicative (Applicative(..))
+-- import           Control.Applicative (Applicative(..))
 import qualified Control.Lens as Lens
 import           Control.Lens.Operators
 import           Data.Binary (Binary)
-import           Data.Foldable (Foldable)
+-- import           Data.Foldable (Foldable)
 import           Data.Map (Map)
 import qualified Data.Map as Map
-import           Data.Traversable (Traversable)
+-- import           Data.Traversable (Traversable)
 import           Lamdu.Data.Definition (FFIName)
 import           Lamdu.Expr.Val (Val)
 import qualified Lamdu.Expr.Val as V

@@ -1,4 +1,4 @@
-{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving, CPP #-}
 module Data.Store.Guid
     (Guid, make, bs, length, new, combine, augment, fromString, asHex) where
 
@@ -16,7 +16,9 @@ import           Data.ByteString.Utils (randomBS, xorBS)
 import qualified Data.Char as Char
 import           Data.Hashable (Hashable, hashWithSalt)
 import           Data.Maybe (fromMaybe)
+#if __GLASGOW_HASKELL__ < 710
 import           Data.Monoid (mappend)
+#endif
 import           Numeric.Utils (encodeHex)
 import           Prelude hiding (length)
 import           System.Random (Random(..), split)

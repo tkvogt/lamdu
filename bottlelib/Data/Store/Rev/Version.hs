@@ -1,4 +1,4 @@
-{-# LANGUAGE GeneralizedNewtypeDeriving, DeriveGeneric #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving, DeriveGeneric, CPP #-}
 module Data.Store.Rev.Version
     ( VersionData, depth, parent, changes
     , preventUndo
@@ -7,17 +7,19 @@ module Data.Store.Rev.Version
     , walkUp, walkDown, versionsBetween, walk
     ) where
 
+#if __GLASGOW_HASKELL__ < 710
 import           Control.Applicative ((<$>), (<*>))
+import           Data.Monoid (Monoid(..))
+import           Data.Traversable (traverse)
+#endif
 import           Control.Lens.Operators
 import           Control.Monad (join)
 import           Control.MonadA (MonadA)
 import           Data.Binary (Binary(..))
-import           Data.Monoid (Monoid(..))
 import           Data.Store.IRef (IRef)
 import           Data.Store.Rev.Change (Change(..), Key, Value)
 import           Data.Store.Transaction (Transaction)
 import qualified Data.Store.Transaction as Transaction
-import           Data.Traversable (traverse)
 import           GHC.Generics (Generic)
 
 newtype Version m = Version { versionIRef :: IRef m (VersionData m) }

@@ -1,4 +1,4 @@
-{-# LANGUAGE RankNTypes #-}
+{-# LANGUAGE RankNTypes, CPP #-}
 module Control.Lens.Utils
     ( Context'
     , contextSetter, contextVal
@@ -8,7 +8,9 @@ module Control.Lens.Utils
     , getPrism
     ) where
 
+#if __GLASGOW_HASKELL__ < 710
 import           Control.Applicative ((<$>))
+#endif
 import           Control.Lens (Lens)
 import qualified Control.Lens as Lens
 import           Data.Maybe (fromMaybe)

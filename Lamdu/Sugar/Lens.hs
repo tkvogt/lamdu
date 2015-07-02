@@ -9,7 +9,7 @@ module Lamdu.Sugar.Lens
     , binderFuncParamDeletes
     ) where
 
-import           Control.Applicative (Applicative(..), (<$>))
+-- import           Control.Applicative (Applicative(..), (<$>))
 import qualified Control.Lens as Lens
 import           Control.Lens.Operators
 import           Control.Lens.Tuple

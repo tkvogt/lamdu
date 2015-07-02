@@ -1,11 +1,13 @@
-{-# LANGUAGE RecordWildCards #-}
+{-# LANGUAGE RecordWildCards, CPP #-}
 module Lamdu.GUI.Zoom
     ( Zoom, make, eventMap, getSizeFactor
     ) where
 
+#if __GLASGOW_HASKELL__ < 710
+import           Data.Monoid (mconcat)
+#endif
 import           Control.Lens.Operators
 import           Data.IORef
-import           Data.Monoid (mconcat)
 import           Data.Vector.Vector2 (Vector2(..))
 import qualified Graphics.UI.Bottle.EventMap as EventMap
 import qualified Graphics.UI.Bottle.Widget as Widget

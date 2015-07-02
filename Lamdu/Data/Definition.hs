@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveGeneric, DeriveFunctor, DeriveFoldable, DeriveTraversable, TemplateHaskell #-}
+{-# LANGUAGE DeriveGeneric, DeriveFunctor, DeriveFoldable, DeriveTraversable, TemplateHaskell, CPP #-}
 module Lamdu.Data.Definition
     ( FFIName(..)
     , Builtin(..)
@@ -8,10 +8,12 @@ module Lamdu.Data.Definition
     , Definition(..), defBody, defPayload
     ) where
 
-import qualified Control.Lens as Lens
-import           Data.Binary (Binary(..))
+#if __GLASGOW_HASKELL__ < 710
 import           Data.Foldable (Foldable(..))
 import           Data.Traversable (Traversable(..))
+#endif
+import qualified Control.Lens as Lens
+import           Data.Binary (Binary(..))
 import           GHC.Generics (Generic)
 import           Lamdu.Expr.Scheme (Scheme)
 

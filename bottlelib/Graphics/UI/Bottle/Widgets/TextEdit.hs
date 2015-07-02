@@ -1,4 +1,4 @@
-{-# LANGUAGE RecordWildCards, OverloadedStrings, TemplateHaskell #-}
+{-# LANGUAGE RecordWildCards, OverloadedStrings, TemplateHaskell, CPP #-}
 module Graphics.UI.Bottle.Widgets.TextEdit
     ( Cursor
     , Style(..)
@@ -9,6 +9,9 @@ module Graphics.UI.Bottle.Widgets.TextEdit
     , defaultCursorWidth
     ) where
 
+#if __GLASGOW_HASKELL__ < 710
+import           Data.Monoid (Monoid(..))
+#endif
 import qualified Control.Lens as Lens
 import           Control.Lens.Operators
 import           Control.Lens.Tuple
@@ -20,7 +23,7 @@ import           Data.List.Split (splitWhen)
 import           Data.List.Utils (minimumOn)
 import qualified Data.Map as Map
 import           Data.Maybe (mapMaybe)
-import           Data.Monoid (Monoid(..), (<>))
+import           Data.Monoid ((<>))
 import qualified Data.Monoid as Monoid
 import qualified Data.Set as Set
 import           Data.Vector.Vector2 (Vector2(..))
@@ -293,7 +296,7 @@ eventMap cursor str displayStr myId =
             backDelete (length curLineBefore)
         | not . null $ curLineBefore ],
 
-        [ E.filterChars (`notElem` " \n") .
+        [ E.filterChars (`notElem` [' ', '\n']) .
             E.allChars "Character" (insertDoc ["character"]) $
             insert . (: [])
         ],

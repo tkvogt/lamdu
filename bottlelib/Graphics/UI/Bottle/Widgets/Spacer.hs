@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP #-}
 module Graphics.UI.Bottle.Widgets.Spacer
     ( make
     , makeWidget
@@ -6,8 +7,11 @@ module Graphics.UI.Bottle.Widgets.Spacer
     , makeHorizLine
     ) where
 
-import           Control.Monad (void)
+#if __GLASGOW_HASKELL__ < 710
 import           Data.Monoid (mempty)
+#endif
+
+import           Control.Monad (void)
 import           Data.Vector.Vector2 (Vector2(..))
 import qualified Graphics.DrawingCombinators as Draw
 import qualified Graphics.UI.Bottle.Animation as Anim

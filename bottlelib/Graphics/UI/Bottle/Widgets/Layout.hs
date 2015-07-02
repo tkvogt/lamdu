@@ -19,7 +19,7 @@ module Graphics.UI.Bottle.Widgets.Layout
     , hoverInPlaceOf
     ) where
 
-import           Control.Applicative (Applicative(..))
+-- -- import           Control.Applicative (Applicative(..))
 import           Control.Lens (Lens')
 import qualified Control.Lens as Lens
 import           Control.Lens.Operators

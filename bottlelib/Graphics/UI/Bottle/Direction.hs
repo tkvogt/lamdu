@@ -1,8 +1,12 @@
+{-# LANGUAGE CPP #-}
 module Graphics.UI.Bottle.Direction
     ( Direction(..), coordinates
     ) where
 
+{-# LANGUAGE CPP #-}
+#if __GLASGOW_HASKELL__ < 710
 import           Control.Applicative (pure, (<$>))
+#endif
 import qualified Control.Lens as Lens
 import           Control.Lens.Operators
 import           Data.Vector.Vector2 (Vector2(..))

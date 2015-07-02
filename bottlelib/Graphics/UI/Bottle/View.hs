@@ -1,4 +1,4 @@
-{-# LANGUAGE RecordWildCards, RankNTypes, OverloadedStrings #-}
+{-# LANGUAGE RecordWildCards, RankNTypes, OverloadedStrings, CPP #-}
 module Graphics.UI.Bottle.View
     ( View(..)
     , empty
@@ -9,11 +9,14 @@ module Graphics.UI.Bottle.View
     , scale
     ) where
 
+#if __GLASGOW_HASKELL__ < 710
+import           Data.Monoid (Monoid(..))
+#endif
+
 import           Control.Lens (Lens')
 import           Control.Lens.Operators
 import           Control.Lens.Tuple
 import qualified Data.ByteString.Char8 as SBS8
-import           Data.Monoid (Monoid(..))
 import           Data.Vector.Vector2 (Vector2(..))
 import qualified Graphics.DrawingCombinators as Draw
 import           Graphics.UI.Bottle.Animation (AnimId, Layer)

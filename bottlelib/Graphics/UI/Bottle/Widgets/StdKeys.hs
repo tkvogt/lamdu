@@ -1,8 +1,10 @@
-{-# LANGUAGE DeriveFunctor, DeriveFoldable, DeriveTraversable #-}
+{-# LANGUAGE DeriveFunctor, DeriveFoldable, DeriveTraversable, CPP #-}
 module Graphics.UI.Bottle.Widgets.StdKeys (DirKeys(..), stdDirKeys) where
 
+#if __GLASGOW_HASKELL__ < 710
 import           Data.Foldable (Foldable)
 import           Data.Traversable (Traversable)
+#endif
 import qualified Graphics.UI.GLFW as GLFW
 
 data DirKeys key = DirKeys

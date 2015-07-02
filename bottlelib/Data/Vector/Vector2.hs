@@ -1,4 +1,4 @@
-{-# LANGUAGE MultiParamTypeClasses, FlexibleInstances, TypeFamilies, DeriveGeneric #-}
+{-# LANGUAGE MultiParamTypeClasses, FlexibleInstances, TypeFamilies, DeriveGeneric, CPP #-}
 module Data.Vector.Vector2
     ( Vector2(Vector2)
     , (***),both,zip
@@ -7,7 +7,10 @@ module Data.Vector.Vector2
     )
 where
 
-import           Control.Applicative (Applicative(..), (<$>), liftA2)
+#if __GLASGOW_HASKELL__ < 710
+import           Control.Applicative (Applicative(..), (<$>))
+#endif
+import           Control.Applicative (liftA2)
 import           Control.DeepSeq (NFData(..))
 import           Control.DeepSeq.Generics (genericRnf)
 import qualified Control.Lens as Lens

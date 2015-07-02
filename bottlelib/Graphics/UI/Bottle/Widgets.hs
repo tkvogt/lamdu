@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings, CPP #-}
 module Graphics.UI.Bottle.Widgets
     ( makeTextView, makeTextViewWidget, makeLabel
     , makeFocusableView
@@ -15,13 +15,15 @@ module Graphics.UI.Bottle.Widgets
     , respondToCursorPrefix
     ) where
 
+#if __GLASGOW_HASKELL__ < 710
 import           Control.Applicative (Applicative(..), (<$>))
+import           Data.Monoid (Monoid(..))
+#endif
 import           Control.Lens.Operators
 import           Control.Monad (when)
 import           Control.MonadA (MonadA)
 import           Data.ByteString.Char8 (pack)
 import           Data.List (intersperse)
-import           Data.Monoid (Monoid(..))
 import           Data.Store.Property (Property)
 import qualified Data.Store.Property as Property
 import           Graphics.UI.Bottle.Animation (AnimId)

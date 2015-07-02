@@ -4,7 +4,7 @@ import qualified Control.Lens as Lens
 import           Control.Lens.Operators
 import           Data.Map (Map)
 import qualified Data.Map as Map
-import           Data.Monoid (Monoid(..))
+-- import           Data.Monoid (Monoid(..))
 import           Lamdu.Eval.Val (ValBody, ValHead, ScopeId, ThunkId)
 import qualified Lamdu.Eval.Val as EvalVal
 

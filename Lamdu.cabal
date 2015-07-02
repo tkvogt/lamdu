@@ -144,8 +144,7 @@ Executable lamdu
                      , hashable
                      , lamdu-ide
                      , lens
-                     , pretty
-                     , prettyclass
+                     , pretty >= 1.1.2.0
                      , random
                      , split
                      , transformers

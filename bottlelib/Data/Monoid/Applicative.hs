@@ -1,7 +1,10 @@
+{-# LANGUAGE CPP #-}
 module Data.Monoid.Applicative (ApplicativeMonoid(..)) where
 
+#if __GLASGOW_HASKELL__ < 710
 import Control.Applicative (Applicative(..), (<$>))
 import Data.Monoid (Monoid(..))
+#endif
 
 newtype ApplicativeMonoid f a =
     ApplicativeMonoid { runApplicativeMonoid :: f a }

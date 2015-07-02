@@ -6,7 +6,11 @@ module Graphics.UI.Bottle.MainLoop
     , mainLoopWidget
     ) where
 
+#if __GLASGOW_HASKELL__ < 710
 import           Control.Applicative ((<$>))
+import           Data.Monoid (Monoid(..))
+import           Data.Traversable (traverse, sequenceA)
+#endif
 import           Control.Concurrent (ThreadId, threadDelay, killThread, myThreadId)
 import           Control.Concurrent.STM.TVar
 import           Control.Concurrent.Utils (forkIOUnmasked)
@@ -18,10 +22,9 @@ import qualified Control.Monad.STM as STM
 import           Data.IORef
 import           Data.MRUMemo (memoIO)
 import           Data.Maybe (fromMaybe)
-import           Data.Monoid (Monoid(..), (<>))
+import           Data.Monoid ((<>))
 import qualified Data.Monoid as Monoid
 import           Data.Time.Clock (NominalDiffTime, UTCTime, getCurrentTime, addUTCTime, diffUTCTime)
-import           Data.Traversable (traverse, sequenceA)
 import           Data.Vector.Vector2 (Vector2(..))
 import           Graphics.DrawingCombinators ((%%))
 import           Graphics.DrawingCombinators.Utils (Image)

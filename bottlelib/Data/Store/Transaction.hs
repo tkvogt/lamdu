@@ -1,4 +1,4 @@
-{-# LANGUAGE GeneralizedNewtypeDeriving, RankNTypes, TemplateHaskell #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving, RankNTypes, TemplateHaskell, CPP #-}
 
 module Data.Store.Transaction
     ( Transaction, run
@@ -22,7 +22,11 @@ module Data.Store.Transaction
     )
 where
 
-import           Control.Applicative (Applicative, (<$>), (<|>))
+#if __GLASGOW_HASKELL__ < 710
+import           Control.Applicative (Applicative, (<$>))
+import           Data.Monoid (mempty)
+#endif
+import           Control.Applicative ((<|>))
 import qualified Control.Lens as Lens
 import           Control.Lens.Operators
 import           Control.Lens.Tuple
@@ -38,7 +42,6 @@ import           Data.ByteString (ByteString)
 import           Data.Map (Map)
 import qualified Data.Map as Map
 import           Data.Maybe (fromMaybe, isJust)
-import           Data.Monoid (mempty)
 import           Data.Store.Guid (Guid)
 import qualified Data.Store.Guid as Guid
 import           Data.Store.IRef (IRef)

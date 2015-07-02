@@ -7,15 +7,15 @@ module Graphics.UI.Bottle.Widgets.EventMapDoc
     , Config(..)
     ) where
 
-import           Control.Applicative ((<$>), Applicative(..))
+-- import           Control.Applicative ((<$>), Applicative(..))
 import qualified Control.Lens as Lens
 import           Control.Lens.Operators
 import           Control.Lens.Tuple
 import           Data.Function (on)
 import           Data.IORef (newIORef, readIORef, modifyIORef)
 import qualified Data.Map as Map
-import           Data.Monoid (Monoid(..))
-import           Data.Traversable (traverse)
+-- import           Data.Monoid (Monoid(..))
+-- import           Data.Traversable (traverse)
 import qualified Data.Tuple as Tuple
 import           Data.Vector.Vector2 (Vector2(..))
 import qualified Graphics.DrawingCombinators as Draw

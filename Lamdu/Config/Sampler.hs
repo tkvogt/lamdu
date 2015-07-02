@@ -1,9 +1,12 @@
+{-# LANGUAGE CPP #-}
 module Lamdu.Config.Sampler
     ( Sampler, new
     , Version, getConfig
     ) where
 
+#if __GLASGOW_HASKELL__ < 710
 import           Control.Applicative ((<$>))
+#endif
 import           Control.Concurrent (threadDelay, ThreadId)
 import           Control.Concurrent.MVar
 import           Control.Concurrent.Utils (forkIOUnmasked)

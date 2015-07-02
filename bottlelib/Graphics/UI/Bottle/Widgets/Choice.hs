@@ -1,4 +1,4 @@
-{-# LANGUAGE TemplateHaskell, RecordWildCards #-}
+{-# LANGUAGE TemplateHaskell, RecordWildCards, CPP #-}
 -- | A vertical-expand (combo-like) choice widget
 
 module Graphics.UI.Bottle.Widgets.Choice
@@ -8,7 +8,9 @@ module Graphics.UI.Bottle.Widgets.Choice
     , ExpandMode(..)
     ) where
 
+#if __GLASGOW_HASKELL__ < 710
 import           Control.Applicative (Applicative(..), (*>))
+#endif
 import qualified Control.Lens as Lens
 import           Control.Lens.Operators
 import           Control.Lens.Tuple

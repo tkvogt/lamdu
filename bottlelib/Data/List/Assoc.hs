@@ -1,8 +1,11 @@
+{-# LANGUAGE CPP #-}
 module Data.List.Assoc
     ( at, match
     ) where
 
+#if __GLASGOW_HASKELL__ < 710
 import           Control.Applicative (Applicative)
+#endif
 import           Control.Lens (LensLike')
 import qualified Control.Lens as Lens
 import           Control.Lens.Tuple

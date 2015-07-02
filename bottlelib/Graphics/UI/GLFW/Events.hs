@@ -1,11 +1,14 @@
-{-# LANGUAGE TupleSections #-}
+{-# LANGUAGE TupleSections, CPP #-}
 module Graphics.UI.GLFW.Events
     ( KeyEvent(..), Event(..), Result(..)
     , eventLoop
     ) where
 
+#if __GLASGOW_HASKELL__ < 710
+import           Data.Monoid (Monoid(..))
+#endif
+
 import           Data.IORef
-import           Data.Monoid
 import qualified Graphics.UI.GLFW as GLFW
 
 -- this is the reification of the callback information:

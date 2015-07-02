@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveGeneric, TemplateHaskell #-}
+{-# LANGUAGE DeriveGeneric, TemplateHaskell, CPP #-}
 module Graphics.UI.Bottle.Rect
     ( R, Rect(..), topLeft, size
     , topLeftAndSize
@@ -9,7 +9,10 @@ module Graphics.UI.Bottle.Rect
     , distance
     ) where
 
-import           Control.Applicative ((<$>), liftA2)
+#if __GLASGOW_HASKELL__ < 710
+import           Control.Applicative ((<$>))
+#endif
+import           Control.Applicative (liftA2)
 import           Control.DeepSeq (NFData(..))
 import           Control.DeepSeq.Generics (genericRnf)
 import           Control.Lens (Traversal', Lens')

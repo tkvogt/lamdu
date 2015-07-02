@@ -1,4 +1,4 @@
-{-# LANGUAGE TemplateHaskell, RankNTypes #-}
+{-# LANGUAGE FlexibleContexts, TemplateHaskell, RankNTypes #-}
 module Lamdu.Sugar.NearestHoles
     ( NearestHoles(..), prev, next
     , none

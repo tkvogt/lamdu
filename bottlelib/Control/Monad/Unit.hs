@@ -1,15 +1,16 @@
-{-# LANGUAGE DeriveFunctor #-}
+{-# LANGUAGE DeriveFunctor, CPP #-}
 module Control.Monad.Unit(Unit(..)) where
 
+#if __GLASGOW_HASKELL__ < 710
 import Control.Applicative (Applicative(..))
-import Control.Monad (ap)
+#endif
 
 data Unit a = Unit
     deriving (Functor)
 
 instance Applicative Unit where
-    pure = return
-    (<*>) = ap
+    pure = const Unit
+    _ <*> _ = Unit
 
 instance Monad Unit where
     return = const Unit

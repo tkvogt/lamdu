@@ -17,7 +17,7 @@ module Lamdu.Expr.IRef
     , ValTree(..), ValTreeM, writeValTree
     ) where
 
-import           Control.Applicative ((<$>))
+-- import           Control.Applicative ((<$>))
 import           Control.DeepSeq (NFData)
 import qualified Control.Lens as Lens
 import           Control.Lens.Operators
@@ -32,7 +32,7 @@ import qualified Data.Store.IRef as IRef
 import           Data.Store.Property (Property(..))
 import           Data.Store.Transaction (Transaction)
 import qualified Data.Store.Transaction as Transaction
-import           Data.Traversable (traverse)
+-- import           Data.Traversable (traverse)
 import qualified Lamdu.Data.Definition as Definition
 import           Lamdu.Expr.Identifier (Identifier(..))
 import           Lamdu.Expr.Nominal (Nominal)

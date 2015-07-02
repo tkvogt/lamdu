@@ -1,8 +1,11 @@
+{-# LANGUAGE CPP #-}
 module Data.Store.Rev.View
     (View, curVersion, branch, setBranch, move, new, store)
 where
 
+#if __GLASGOW_HASKELL__ < 710
 import           Control.Applicative ((<$>), (<$))
+#endif
 import           Control.Lens.Operators
 import           Control.Monad ((<=<), guard, unless)
 import           Control.MonadA (MonadA)
@@ -19,7 +22,9 @@ import qualified Data.Store.Rev.Version as Version
 import           Data.Store.Rev.ViewBranchInternal (BranchData, ViewData(..), View(..), Branch(..), moveView, makeViewKey, applyChangesToView, brViews, vdBranch)
 import           Data.Store.Transaction (Transaction, Store(..))
 import qualified Data.Store.Transaction as Transaction
+#if __GLASGOW_HASKELL__ < 710
 import           Data.Traversable (traverse)
+#endif
 import           Prelude hiding (lookup)
 
 -- | A Version Map is a large mapping of ObjectKeys to their

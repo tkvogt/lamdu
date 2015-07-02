@@ -1,4 +1,4 @@
-{-# LANGUAGE RecordWildCards, TemplateHaskell #-}
+{-# LANGUAGE RecordWildCards, TemplateHaskell, CPP #-}
 module Graphics.UI.Bottle.Widgets.TextView
     ( Style(..), styleColor, styleFont
     , lineHeight
@@ -9,13 +9,16 @@ module Graphics.UI.Bottle.Widgets.TextView
     , letterRects
     ) where
 
+#if __GLASGOW_HASKELL__ < 710
+import           Data.Monoid (Monoid(..))
+#endif
+
 import           Control.Applicative (liftA2)
 import qualified Control.Lens as Lens
 import           Control.Lens.Operators
 import           Control.Lens.Tuple
 import           Data.List (foldl')
 import           Data.List.Split (splitWhen)
-import           Data.Monoid (Monoid(..))
 import           Data.Vector.Vector2 (Vector2(..))
 import qualified Graphics.DrawingCombinators as Draw
 import           Graphics.UI.Bottle.Animation (AnimId, Size)
