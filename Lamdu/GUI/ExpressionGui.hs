@@ -218,7 +218,7 @@ applyWideAnnotationBehavior config animId wideAnnotationBehavior shrinkRatio eg 
 makeWithAnnotationBG ::
     MonadA m => (AnimId -> ExprGuiM m (ExpressionGui m)) ->
     AnnotationParams -> ExprGuiM m (ExpressionGui m)
-makeWithAnnotationBG f (AnnotationParams minWidth animId wideAnnotationBehavior) =
+makeWithAnnotationBG f (AnnotationParams minWidth srcAnimId wideAnnotationBehavior) =
     do
         config <- ExprGuiM.readConfig
         annotationEg <- f animId
@@ -242,6 +242,8 @@ makeWithAnnotationBG f (AnnotationParams minWidth animId wideAnnotationBehavior)
         annotationEg
             & maybeTooNarrow
             & maybeTooWide
+    where
+        animId = WidgetIds.hash srcAnimId & Widget.toAnimId
 
 type ScopeAndVal = (ScopeId, EvalResult ())
 
